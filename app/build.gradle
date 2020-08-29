@@ -17,6 +17,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField("String","PIXABAY_API_KEY",PIXABAY_API_KEY)
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
