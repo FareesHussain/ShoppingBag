@@ -1,7 +1,8 @@
-package farees.hussain.shoppingbag
+package farees.hussain.shoppingbag.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import farees.hussain.shoppingbag.R
 
 class MainActivity : AppCompatActivity() {
 
