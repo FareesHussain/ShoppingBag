@@ -1,7 +1,9 @@
 package farees.hussain.shoppingbag.ui.fragments
 
 import android.app.Activity
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.liveData
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.test.espresso.Espresso.onView
@@ -9,18 +11,20 @@ import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.filters.MediumTest
+import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import farees.hussain.shoppingbag.R
+import farees.hussain.shoppingbag.getOrAwaitValue
 import farees.hussain.shoppingbag.launchFragmentsInHiltContainer
 import farees.hussain.shoppingbag.repositories.DefaultShoppingRepository
+import farees.hussain.shoppingbag.repositories.FakeShoppingRepositoryAndroidTest
 import farees.hussain.shoppingbag.repositories.ShoppingRepository
 import farees.hussain.shoppingbag.ui.ShoppingViewModel
 import farees.hussain.shoppingbag.ui.fragments.AddShoppingItemFragmentTest_ComponentDataHolder.get
 import kotlinx.android.synthetic.main.fragment_add_shopping_item.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -59,18 +63,16 @@ class AddShoppingItemFragmentTest {
         verify(navController).navigate(AddShoppingItemFragmentDirections.actionAddShoppingItemFragmentToImagePickFragment())
     }
 
-    //todo -> to implement a test cases which verifies press back button to reset the current url
-
-//    @Test
-//    fun pressBackButton_resetCurrUrl(){
-//        val navController = mock(NavController::class.java)
-//        launchFragmentsInHiltContainer<AddShoppingItemFragment> (
-//            fragmentFactory = fragmentFactory
-//        ){
-//            Navigation.setViewNavController(requireView(),navController)
-//        }
-//        pressBack()
-//    }
+    @Test
+    fun pressBackButton_checkResetCurrUrl(){
+        val navController = mock(NavController::class.java)
+        val testViewModel = ShoppingViewModel(FakeShoppingRepositoryAndroidTest())
+        launchFragmentsInHiltContainer<AddShoppingItemFragment>{
+            Navigation.setViewNavController(requireView(),navController)
+        }
+        pressBack()
+        assertThat(testViewModel.curImgUrl.value?:"").isEqualTo("" as String?)
+    }
 
 
 }
