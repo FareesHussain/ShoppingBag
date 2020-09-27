@@ -2,11 +2,14 @@ package farees.hussain.shoppingbag.di
 
 import android.content.Context
 import androidx.room.Room
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import farees.hussain.shoppingbag.R
 import farees.hussain.shoppingbag.db.local.ShoppingDao
 import farees.hussain.shoppingbag.db.local.ShoppingItemDatabase
 import farees.hussain.shoppingbag.db.network.PixabayAPI
@@ -29,6 +32,15 @@ object AppModule {
         api: PixabayAPI
     ) = DefaultShoppingRepository(dao,api) as ShoppingRepository
 
+    @Singleton
+    @Provides
+    fun provideGlideInstance(
+        @ApplicationContext context: Context
+    ) = Glide.with(context).setDefaultRequestOptions(
+        RequestOptions()
+            .placeholder(R.drawable.ic_image)
+            .error(R.drawable.ic_image)
+    )
 
     @Singleton
     @Provides
