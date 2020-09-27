@@ -9,6 +9,8 @@ import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import farees.hussain.shoppingbag.getOrAwaitValue
+import farees.hussain.shoppingbag.launchFragmentsInHiltContainer
+import farees.hussain.shoppingbag.ui.fragments.ShoppingFragment
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
@@ -46,6 +48,14 @@ class ShoppingDaoTest {
     @After
     fun teardown(){
         database.close()
+    }
+
+    //! - > to test fragments
+    @Test
+    fun testLaunchFragmentInHiltContainer(){
+        launchFragmentsInHiltContainer<ShoppingFragment> {
+
+        }
     }
 
     @Test
