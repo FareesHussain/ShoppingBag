@@ -23,7 +23,7 @@ import javax.inject.Inject
 class ShoppingFragment @Inject constructor(
     val shoppingItemAdapter: ShoppingItemAdapter,
     var viewModel : ShoppingViewModel ?= null
-) : Fragment(R.layout.fragment_shopping) {
+) : Fragment() {
     private lateinit var binding: FragmentShoppingBinding
     override fun onCreateView(
         inflater: LayoutInflater,
