@@ -36,6 +36,10 @@ class ShoppingViewModel @ViewModelInject constructor(
         repository.deleteShoppingItem(shoppingItem)
     }
 
+    fun insertShoppingItemIntoDb(shoppingItem: ShoppingItem) = viewModelScope.launch {
+        repository.insertShoppingItem(shoppingItem)
+    }
+
     fun insertShoppingItem(shoppingItem: ShoppingItem) = viewModelScope.launch {
         repository.insertShoppingItem(shoppingItem)
     }
