@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import farees.hussain.shoppingbag.R
 import farees.hussain.shoppingbag.adapter.ShoppingItemAdapter
 import farees.hussain.shoppingbag.databinding.FragmentShoppingBinding
 import farees.hussain.shoppingbag.ui.ShoppingViewModel
@@ -22,7 +23,7 @@ import javax.inject.Inject
 class ShoppingFragment @Inject constructor(
     val shoppingItemAdapter: ShoppingItemAdapter,
     var viewModel : ShoppingViewModel ?= null
-) : Fragment() {
+) : Fragment(R.layout.fragment_shopping) {
     private lateinit var binding: FragmentShoppingBinding
     override fun onCreateView(
         inflater: LayoutInflater,
