@@ -3,6 +3,8 @@ package farees.hussain.shoppingbag.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import farees.hussain.shoppingbag.R
+import farees.hussain.shoppingbag.ui.fragments.ShoppingFragmentFactory
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
